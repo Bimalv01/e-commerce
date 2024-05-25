@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e2e6ea;
+        }
+        .status {
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .pending {
+            color: #f39c12;
+            background-color: #fef2e8;
+        }
+        .processing {
+            color: #3498db;
+            background-color: #e8f8fe;
+        }
+        .shipped {
+            color: #27ae60;
+            background-color: #e8f8f5;
+        }
+        .delivered {
+            color: #8e44ad;
+            background-color: #f5e8f8;
+        }
+        .cancelled {
+            color: #c0392b;
+            background-color: #f8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Purchase Orders</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Seller</th>
+                <th>Purchase Date</th>
+                <th>Status</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.lens.p_name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.seller }}</td>
+                    <td>{{ order.purchase_date }}</td>
+                    <td class="status {{ order.status|lower }}">{{ order.status }}</td>
+                    <td>{{ order.total_amount }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
